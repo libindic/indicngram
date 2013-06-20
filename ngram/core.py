@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #
-from syllabalizer import syllabalizer
+import syllabalizer
 
 
 class Ngram:
@@ -30,7 +30,7 @@ class Ngram:
         for word in words:
             s = syllabalizer.getInstance()
             #TODO-Normalize before taking ngram!!!
-            syllables = s.syllabalize(word)
+            syllables = s.syllabify(word)
             syllable_count = len(syllables)
             window_start = 0
             window_end = 0
