@@ -8,26 +8,27 @@
             event.preventDefault();
             var text= $("textarea[name=input_text]", 'form').val();
 
-            var n= $("input[name=n]",'form').val();
-            var type= $("input[name=type]",'form').val();
+            var n= $("input[name=n]").val();
+            var type= $("select[name=ntype]").val();
+            var jsonRequest ={};
             if (type == "word")
-            var jsonRequest = {
+            jsonRequest = {
                 "method" :  "ngram.wordNgram",
                 "params" : [text,n], 
                 "id" : ""
             };
             if (type == "letter")     
-            var jsonRequest = {
+            jsonRequest = {
                 "method" :  "ngram.letterNgram",
                 "params" : [text,n], 
                 "id" : ""
             };
-            if (type == "letter")     
-            var jsonRequest = {
+            if (type == "syllable")     
+            jsonRequest = {
                 "method" :  "ngram.syllableNgram",
                 "params" : [text,n], 
                 "id" : ""
-            };         
+            };        
             id_result = $('#result');
             id_error = $('#errormessage');
             id_progress = $('#progress');
@@ -44,9 +45,21 @@
                 },
                 success: function(msg) {
                     id_progress.hide();
-                    var result = msg.result
-                    id_result.html(result).show();
-                },
+                    var resultObj = eval(msg.result);
+                    id_result.html("");
+                    if(resultObj.length != 0){
+                        id_result.html("<ul id='list'></ul>")
+                        $.each(resultObj, function(index,item){
+                            $('#list').append($( "<li><span class='badge  badge-info'> "+item+"</span> </li>" ));                        
+                        });
+                }
+                else{
+                    id_error.show();
+                    id_error.html("Invalid input")
+                }
+
+                    id_result.show();
+            },
                 error: function(msg) {
                     id_progress.hide();
                     id_error.html("Something went wrong. Please try again!").show();
@@ -107,6 +120,8 @@
     <div id="successmessage" class="alert alert-success hide"></div>
     <div id="errormessage" class="alert alert-error hide"></div>
     <div id="result"></div>
+</div>
+
     <div class="well">
 
         <h3>Python ngram API</h3>
@@ -136,5 +151,4 @@
             </li>
         </ul>
     </div>
-</div>
 {% endblock %}
