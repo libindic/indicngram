@@ -18,6 +18,6 @@ setup(
     packages = find_packages(),
     include_package_data = True,
     setup_requires = ['setuptools-git'],
-    install_requires = ['setuptools','syllabalizer'],
+    install_requires = ['setuptools','indicsyllabifier'],
     zip_safe = False,
     )
