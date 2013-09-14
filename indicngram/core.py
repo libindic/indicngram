@@ -22,8 +22,17 @@ import indicsyllabifier
 
 
 class Ngram:
-
+    """
+    Ngram class.You need to create an object to use the function
+    """
     def syllableNgram(self, text, window_size=2):
+        """
+        :param text: The text to be split into ngrams.
+        :type word: str.
+        :param window_size: window size to be used while making the ngrams.
+        :type window_size: int.
+        :returns: list of syllable ngrams.
+        """
         window_size = int(window_size)
         words = text.split(" ")
         ngrams = []
@@ -44,6 +53,13 @@ class Ngram:
         return ngrams
 
     def letterNgram(self, word, window_size=2):
+        """
+        :param word: The word to be split into ngrams.
+        :type word: str.
+        :param window_size: window size to be used while making the ngrams.
+        :type window_size: int.
+        :returns: list of ngrams.
+        """
         window_size = int(window_size)
         word = word.strip()
         ngrams = []
@@ -61,6 +77,13 @@ class Ngram:
         return ngrams
 
     def wordNgram(self, text, window_size=2):
+        """
+        :param text: The text to be split into ngrams.
+        :type word: str.
+        :param window_size: window size to be used while making the ngrams.
+        :type window_size: int.
+        :returns: list of word ngrams.
+        """
         window_size = int(window_size)
         words = text.split()
         ngrams = []
@@ -78,9 +101,15 @@ class Ngram:
         return ngrams
 
     def get_module_name(self):
+        """
+        returns the module's name
+        """
         return "Ngram Library"
 
     def get_info(self):
+        """
+        returns info on the module
+        """
         return "Ngram Library for English and Indian languages"
 
 
