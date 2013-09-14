@@ -13,19 +13,19 @@
             var jsonRequest ={};
             if (type == "word")
             jsonRequest = {
-                "method" :  "ngram.wordNgram",
+                "method" :  "indicngram.wordNgram",
                 "params" : [text,n], 
                 "id" : ""
             };
             if (type == "letter")     
             jsonRequest = {
-                "method" :  "ngram.letterNgram",
+                "method" :  "indicngram.letterNgram",
                 "params" : [text,n], 
                 "id" : ""
             };
             if (type == "syllable")     
             jsonRequest = {
-                "method" :  "ngram.syllableNgram",
+                "method" :  "indicngram.syllableNgram",
                 "params" : [text,n], 
                 "id" : ""
             };        
