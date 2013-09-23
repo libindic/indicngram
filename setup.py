@@ -7,7 +7,7 @@ name = "indicngram"
 
 setup(
     name = name,
-    version = "0.3",
+    version = "0.4",
     url = "http://silpa.org.in/NGram",
     license = "LGPL-3.0",
     description = "n-gram genereator for indic languages",
