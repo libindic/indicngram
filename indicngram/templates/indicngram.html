@@ -1,37 +1,28 @@
-
 {% extends "silpa.html" %}
+
 {% block modulescript %}
 <script>
     $(document).ready(function() {
         $("form").submit(function(event)
         {
             event.preventDefault();
-            var text= $("textarea[name=input_text]", 'form').val();
+            var text = $("textarea[name=input_text]", 'form').val(),
+                n = $("input[name=n]").val(),
+                type = $("select[name=ntype]").val(),
+                id_result = $('#result'),
+                id_error = $('#errormessage'),
+                id_progress = $('#progress'),
+                method = {
+                    word: "indicngram.wordNgram",
+                    letter: "indicngram.letterNgram",
+                    syllable: "indicngram.syllableNgram"
+                },
+                jsonRequest = {
+                    params: [text, n],
+                    method: method[type],
+                    id: ""
+                };
 
-            var n= $("input[name=n]").val();
-            var type= $("select[name=ntype]").val();
-            var jsonRequest ={};
-            if (type == "word")
-            jsonRequest = {
-                "method" :  "indicngram.wordNgram",
-                "params" : [text,n], 
-                "id" : ""
-            };
-            if (type == "letter")     
-            jsonRequest = {
-                "method" :  "indicngram.letterNgram",
-                "params" : [text,n], 
-                "id" : ""
-            };
-            if (type == "syllable")     
-            jsonRequest = {
-                "method" :  "indicngram.syllableNgram",
-                "params" : [text,n], 
-                "id" : ""
-            };        
-            id_result = $('#result');
-            id_error = $('#errormessage');
-            id_progress = $('#progress');
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
@@ -39,27 +30,23 @@
                 data: JSON.stringify(jsonRequest),
                 dataType: "json",
                 beforeSend:function(){
-                    id_result.hide();
+                    id_result.empty().hide();
                     id_error.hide();
                     id_progress.html("Making ngrams. Please Wait...").show();
                 },
                 success: function(msg) {
                     id_progress.hide();
-                    var resultObj = eval(msg.result);
-                    id_result.html("");
+                    var resultObj = msg.result,
+                        ul = $('<ul>').appendTo(id_result);
                     if(resultObj.length != 0){
-                        id_result.html("<ul id='list'></ul>")
                         $.each(resultObj, function(index,item){
-                            $('#list').append($( "<li><span class='badge  badge-info'> "+item+"</span> </li>" ));                        
+                            $('<li>').text(item).appendTo(ul);
                         });
-                }
-                else{
-                    id_error.show();
-                    id_error.html("Invalid input")
-                }
-
-                    id_result.show();
-            },
+                        id_result.show();
+                    } else{
+                        id_error.html("Invalid input").show();
+                    }
+                },
                 error: function(msg) {
                     id_progress.hide();
                     id_error.html("Something went wrong. Please try again!").show();
