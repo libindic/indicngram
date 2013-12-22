@@ -58,84 +58,74 @@
 {% endblock %}
 
 {% block content %}
-<div class="well">
-    <h2>Indic Ngram Library</h2></hr>
-    <h4>What is Ngram?</h4>
-    <p>
-    An n-gram model is a type of probabilistic model for predicting the next item in a sequence. n-grams are used in various areas of statistical natural language processing and genetic sequence analysis.
-    An n-gram is a subsequence of n items from a given sequence. The items in question can be phonemes, syllables, letters, words or base pairs according to the application.
-    An n-gram of size 1 is referred to as a "unigram"; size 2 is a "bigram" (or, less commonly, a "digram"); size 3 is a "trigram"; and size 4 or more is simply called an "n-gram".
-    </p>
-    <p>If you want to use this library in your program , you may refer the JSON-RPC based <a href="apis.html#NGram">API documentation.</a></p>
-    <a href="http://en.wikipedia.org/wiki/N-gram">Read more about N-gram</a>
-    <h4>Supported Languages</h4>
-    <p>English, Hindi, Malayalam, Kannada,  Bengali</p>
-    <p>Enter the text for  getting the n-gram below. For Word Ngram type enter  a sentence.
-    Language of each  word will be detected.    You can give the text in any language and even with mixed language.
-    </p>
-    <p class="help-block">Enter the text for conversion in the below text area.
-    </p>
-    <form class="form-horizontal" action="" method="post">
-        <textarea  name='input_text' id='id1' rows="10" style="width: 98.5%;"></textarea>
-        <span class="help-block"></span>
-        <div class="control-group">
-            <label class="control-label" for="font"> N-Gram type</label>
-            <div class="controls">
-                <select id="ntype" name="ntype">
-                    <option value="word">Word Ngram</option>
-                    <option value="syllable">Syllable Ngram</option>
-                    <option value="letter">Letter Ngram</option>
-                </select>
-
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="direction">N :</label>
-            <div class="controls">
-
-                <input type="text"  name='n' id='n' value ="2">
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <button class="btn" type="submit" id="Convert">Convert</button>
-            </div>
-        </div>
-    </form>
-    <hr/>
-    <div id="progress" class="alert alert-info hide"></div>
-    <div id="successmessage" class="alert alert-success hide"></div>
-    <div id="errormessage" class="alert alert-error hide"></div>
-    <div id="result"></div>
+<div class="page-header">
+    <h1>Indic Ngram Library</h1>
 </div>
 
-    <div class="well">
+<h4>What is Ngram?</h4>
+<p>An n-gram model is a type of probabilistic model for predicting the next item in a sequence. n-grams are used in various areas of statistical natural language processing and genetic sequence analysis.
+An n-gram is a subsequence of n items from a given sequence. The items in question can be phonemes, syllables, letters, words or base pairs according to the application.
+An n-gram of size 1 is referred to as a "unigram"; size 2 is a "bigram" (or, less commonly, a "digram"); size 3 is a "trigram"; and size 4 or more is simply called an "n-gram".</p>
+<p>If you want to use this library in your program , you may refer the JSON-RPC based <a href="apis.html#NGram">API documentation.</a></p>
+<a href="http://en.wikipedia.org/wiki/N-gram">Read more about N-gram</a>
 
-        <h3>Python ngram API</h3>
-        This service provides indic ngram libraries
-        <ul>
-            <li>Method: modules.Ngram.wordNgram
-            <ul>
-                <li>arg1 : the  sentence</li>
-                <li>n :  n of n-gram (Optional)</li>
-                <li>Return : The ngram for the sentence</li>
-            </ul>
-            </li>
-
-            <li>Method: modules.Ngram.letterNgram
-            <ul>
-                <li>arg1 : the word</li>
-                <li>n :  n of n-gram (Optional)</li>
-                <li>Return : The ngram for the word</li>
-            </ul></li>
-
-            <li>Method: modules.Ngram.syllableNgram
-            <ul>
-                <li>arg1 : the word</li>
-                <li>n :  n of n-gram (Optional)</li>
-                <li>Return : The ngram for the word, the letters being splitted at syllable level</li>
-            </ul>
-            </li>
-        </ul>
+<h4>Supported Languages</h4>
+<p>English, Hindi, Malayalam, Kannada,  Bengali</p>
+<p>Enter the text for  getting the n-gram below. For Word Ngram type enter  a sentence.
+Language of each  word will be detected.    You can give the text in any language and even with mixed language.
+</p>
+<p class="help-block">Enter the text for conversion in the below text area.</p>
+<form class="form-horizontal" action="" method="post">
+    <div class="form-group">
+        <textarea  name='input_text' id='id1' rows="10" class="form-control"></textarea>
     </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="font"> N-Gram type</label>
+        <div class="col-sm-3">
+            <select id="ntype" name="ntype" class="form-control">
+                <option value="word">Word Ngram</option>
+                <option value="syllable">Syllable Ngram</option>
+                <option value="letter">Letter Ngram</option>
+            </select>
+        </div>
+        <label class="control-label col-sm-1" for="direction">N</label>
+        <div class="col-sm-1">
+            <input type="text"  name='n' id='n' value ="2" class="form-control">
+        </div>
+        <button class="btn btn-default pull-right" type="submit" id="Convert">Convert</button>
+    </div>
+</form>
+
+<div id="progress" class="alert alert-info silpa-hide"></div>
+<div id="errormessage" class="alert alert-error silpa-hide"></div>
+<div id="result"></div>
+<hr/>
+<div class="well">
+    <h3>Python ngram API</h3>
+    <p>This service provides indic ngram libraries</p>
+    <ul>
+        <li>Method: modules.Ngram.wordNgram
+        <ul>
+            <li>arg1 : the  sentence</li>
+            <li>n :  n of n-gram (Optional)</li>
+            <li>Return : The ngram for the sentence</li>
+        </ul>
+        </li>
+
+        <li>Method: modules.Ngram.letterNgram
+        <ul>
+            <li>arg1 : the word</li>
+            <li>n :  n of n-gram (Optional)</li>
+            <li>Return : The ngram for the word</li>
+        </ul></li>
+
+        <li>Method: modules.Ngram.syllableNgram
+        <ul>
+            <li>arg1 : the word</li>
+            <li>n :  n of n-gram (Optional)</li>
+            <li>Return : The ngram for the word, the letters being splitted at syllable level</li>
+        </ul>
+        </li>
+    </ul>
+</div>
 {% endblock %}
