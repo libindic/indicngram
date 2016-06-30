@@ -25,6 +25,7 @@ class Ngram:
     """
     Ngram class.You need to create an object to use the function
     """
+
     def syllableNgram(self, text, window_size=2):
         """
         :param text: The text to be split into ngrams.
@@ -38,7 +39,7 @@ class Ngram:
         ngrams = []
         for word in words:
             s = indicsyllabifier.getInstance()
-            #TODO-Normalize before taking ngram!!!
+            # TODO-Normalize before taking ngram!!!
             syllables = s.syllabify(word)
             syllable_count = len(syllables)
             window_start = 0
@@ -49,7 +50,7 @@ class Ngram:
                 else:
                     window_end = syllable_count
                 ngrams.append(syllables[window_start:window_end])
-                window_start = window_start+1
+                window_start = window_start + 1
         return ngrams
 
     def letterNgram(self, word, window_size=2):
@@ -63,7 +64,7 @@ class Ngram:
         window_size = int(window_size)
         word = word.strip()
         ngrams = []
-        #TODO-Normalize before taking ngram!!!
+        # TODO-Normalize before taking ngram!!!
         letter_count = len(word)
         window_start = 0
         window_end = 0
@@ -73,7 +74,7 @@ class Ngram:
             else:
                 window_end = letter_count
             ngrams.append(word[window_start:window_end])
-            window_start = window_start+1
+            window_start = window_start + 1
         return ngrams
 
     def wordNgram(self, text, window_size=2):
@@ -97,7 +98,7 @@ class Ngram:
                 window_end = word_count
             words[window_start:window_end]
             ngrams.append(words[window_start:window_end])
-            window_start = window_start+1
+            window_start = window_start + 1
         return ngrams
 
     def get_module_name(self):
