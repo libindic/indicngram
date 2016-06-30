@@ -1,1 +1,1 @@
-from core import getInstance,Ngram
+from .core import getInstance, Ngram
