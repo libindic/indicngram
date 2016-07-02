@@ -33,3 +33,10 @@ class IndicNgramTest(TestCase):
                          [' cat', 'cat-', 'at-t', 't-te', '-ter', 'ter-',
                           'er-p', 'r-pi', '-pil', 'pil-', 'il-l', 'l-la',
                           '-lar', 'lar '])
+
+    def test_syllableNgram_Malayalam(self):
+        self.assertEqual(self.ngram.syllableNgram(u"അധ്യാപകൻ"),
+                         [[u'അ', u'ധ്യാ'],
+                          [u'ധ്യാ', u'പ'],
+                          [u'പ', u'ക'],
+                          [u'ക', u'ൻ']])
