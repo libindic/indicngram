@@ -1,25 +1,23 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
 
-import unittest
-from indicngram import getInstance
+from testtools import TestCase
+from libindic import ngram
 
 
-class TestIndicNgram(unittest.TestCase):
+class IndicNgramTest(TestCase):
 
     def setUp(self):
-        self.instance = getInstance()
-
-    def test_info(self):
-        self.assertEqual('Ngram Library for English and Indian languages',
-                         self.instance.get_info())
+        super(IndicNgramTest, self).setUp()
+        self.ngram = ngram.Ngram()
 
     def test_letterNgram_English(self):
-        self.assertEqual(self.instance.letterNgram("catterpillar"),
+        self.assertEqual(self.ngram.letterNgram("catterpillar"),
                          ['ca', 'at', 'tt', 'te', 'er', 'rp',
                           'pi', 'il', 'll', 'la', 'ar'])
 
     def test_wordNgram_English(self):
-        self.assertEqual(self.instance.wordNgram("The quick \
+        self.assertEqual(self.ngram.wordNgram("The quick \
         brown fox jumped over the lazy dog"),
                          [['The', 'quick'],
                           ['quick', 'brown'],
@@ -31,15 +29,14 @@ class TestIndicNgram(unittest.TestCase):
                           ['lazy', 'dog']])
 
     def test_syllableNgram_English(self):
-        self.assertEqual(self.instance.syllableNgram("catterpillar", 4),
+        self.assertEqual(self.ngram.syllableNgram("catterpillar", 4),
                          [' cat', 'cat-', 'at-t', 't-te', '-ter', 'ter-',
                           'er-p', 'r-pi', '-pil', 'pil-', 'il-l', 'l-la',
                           '-lar', 'lar '])
 
-
-def main():
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestIndicNgram)
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-if __name__ == "__main__":
-    main()
+    def test_syllableNgram_Malayalam(self):
+        self.assertEqual(self.ngram.syllableNgram(u"അധ്യാപകൻ"),
+                         [[u'അ', u'ധ്യാ'],
+                          [u'ധ്യാ', u'പ'],
+                          [u'പ', u'ക'],
+                          [u'ക', u'ൻ']])
