@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 
 from testtools import TestCase
-from libindic import ngram
+
+from .. import Ngram
 
 
 class IndicNgramTest(TestCase):
 
     def setUp(self):
         super(IndicNgramTest, self).setUp()
-        self.ngram = ngram.Ngram()
+        self.ngram = Ngram()
 
     def test_letterNgram_English(self):
         self.assertEqual(self.ngram.letterNgram("catterpillar"),
