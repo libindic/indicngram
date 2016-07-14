@@ -1,6 +1,6 @@
 travis:
 	python setup.py test --coverage \
-		--coverage-package-name=libindic.ngram
+		--coverage-package-name=ngram
 	flake8 --max-complexity 10 libindic/ngram
 
 clean:
