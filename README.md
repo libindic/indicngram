@@ -23,7 +23,7 @@ size 4 or more is simply called an "n-gram".
 1. Clone the repository `git clone https://github.com/libindic/indicngram.git`
 2. Change to the cloned directory `cd indicngram`
 3. Run setup.py to create installable source `python setup.py sdist`
-3. Install using pip `pip install dist/libindic-ngram*.tar.gz`
+4. Install using pip `pip install dist/libindic-ngram*.tar.gz`
 
 ## Usage
 ```
