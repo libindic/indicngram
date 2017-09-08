@@ -13,20 +13,21 @@
                 id_error = $('#errormessage'),
                 id_progress = $('#progress'),
                 method = {
-                    word: "indicngram.wordNgram",
-                    letter: "indicngram.letterNgram",
-                    syllable: "indicngram.syllableNgram"
+                    word: "ngram.wordNgram",
+                    letter: "ngram.letterNgram",
+                    syllable: "ngram.syllableNgram"
                 },
                 jsonRequest = {
                     params: [text, n],
                     method: method[type],
-                    id: ""
+                    id: "jsonrpc",
+                    jsonrpc: "2"
                 };
 
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
-                url: "JSONRPC",
+                url: "/api/JSONRPC",
                 data: JSON.stringify(jsonRequest),
                 dataType: "json",
                 beforeSend:function(){
