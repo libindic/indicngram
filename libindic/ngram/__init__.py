@@ -18,8 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #
-import indicsyllabifier
 
+from libindic.syllabifier import Syllabifier
 
 class Ngram:
     """
@@ -38,7 +38,7 @@ class Ngram:
         words = text.split(" ")
         ngrams = []
         for word in words:
-            s = indicsyllabifier.getInstance()
+            s = Syllabifier.getInstance()
             # TODO-Normalize before taking ngram!!!
             syllables = s.syllabify(word)
             syllable_count = len(syllables)
